@@ -150,6 +150,19 @@
             cursor: pointer;
         }
 
+        #contactBtn {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        #contactBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
         nav a::after, nav button::after {
             content: '';
             position: absolute;
@@ -836,6 +849,110 @@
             font-weight: 600;
         }
 
+        /* Projects Showcase Section */
+        .projects-showcase {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .projects-filter {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            color: var(--text-dark);
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .project-image {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            margin-top: 1.5rem;
+        }
+
+        .project-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-color);
+        }
+
         /* Contact Section */
         .contact {
             padding: 5rem 2rem;
@@ -955,7 +1072,7 @@
                 <li><button onclick="showPage('home')" class="nav-btn">Home</button></li>
                 <li><button onclick="showPage('experience')" class="nav-btn">Experience</button></li>
                 <li><button onclick="showPage('projects')" class="nav-btn">Projects</button></li>
-                <li><a href="mailto:reddish.rb@gmail.com">Contact</a></li>
+                <li><button id="contactBtn" onclick="document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' })">Contact</button></li>
             </ul>
         </div>
     </nav>
@@ -969,16 +1086,6 @@
                 <p class="subtitle">Data Scientist & ML Engineer</p>
                 <p class="tagline">Building Production-Grade AI Systems | GenAI | LLM Systems | Financial Document Intelligence</p>
                 
-                <!-- Projects List -->
-                <div class="projects-list">
-                    <div class="project-item-hero" onclick="showProjectDetail('remittance')">📄 Remittance Platform</div>
-                    <div class="project-item-hero" onclick="showProjectDetail('ppm')">💬 PPM Variance</div>
-                    <div class="project-item-hero" onclick="showProjectDetail('chart')">📊 Chart Parser</div>
-                    <div class="project-item-hero" onclick="showProjectDetail('footnote')">🔗 Footnote Linker</div>
-                    <div class="project-item-hero" onclick="showProjectDetail('mediraga')">🏥 Mediraga</div>
-                    <div class="project-item-hero" onclick="showProjectDetail('twin')">🤖 Digital Twin</div>
-                </div>
-
                 <div class="cta-buttons" style="margin-top: 3rem;">
                     <a href="#about" class="btn btn-primary">Learn More</a>
                     <button onclick="showPage('experience')" class="btn btn-secondary">View Experience</button>
@@ -1020,51 +1127,80 @@
                 <div class="about-content" style="margin-top: 3rem;">
                     <div>
                         <div class="skill-category">
-                            <span class="skill-category-label">AI / GenAI / LLM</span>
+                            <span class="skill-category-label">Generative AI</span>
                             <div class="skills">
-                                <span class="skill-tag">LangChain</span>
-                                <span class="skill-tag">CrewAI</span>
                                 <span class="skill-tag">GPT-4</span>
                                 <span class="skill-tag">Claude</span>
-                                <span class="skill-tag">HuggingFace</span>
-                                <span class="skill-tag">RAG</span>
+                                <span class="skill-tag">RAG Architectures</span>
+                                <span class="skill-tag">Agentic AI (CrewAI)</span>
+                                <span class="skill-tag">LangChain Pipelines</span>
+                                <span class="skill-tag">Prompt Engineering</span>
+                                <span class="skill-tag">Structured Extraction</span>
+                                <span class="skill-tag">LLM Evaluation</span>
+                                <span class="skill-tag">Guardrails</span>
+                                <span class="skill-tag">Hallucination Mitigation</span>
                             </div>
                         </div>
 
                         <div class="skill-category">
-                            <span class="skill-category-label">Document Intelligence & OCR</span>
+                            <span class="skill-category-label">ML / NLP / CV</span>
                             <div class="skills">
-                                <span class="skill-tag">Azure Doc Intelligence</span>
-                                <span class="skill-tag">PaddleOCR</span>
-                                <span class="skill-tag">EasyOCR</span>
+                                <span class="skill-tag">PyTorch</span>
+                                <span class="skill-tag">TensorFlow</span>
+                                <span class="skill-tag">Scikit-learn</span>
+                                <span class="skill-tag">HuggingFace</span>
                                 <span class="skill-tag">YOLOv8</span>
                                 <span class="skill-tag">DETR</span>
+                                <span class="skill-tag">PaddleOCR</span>
+                                <span class="skill-tag">EasyOCR</span>
                                 <span class="skill-tag">OpenCV</span>
+                                <span class="skill-tag">Embeddings</span>
+                                <span class="skill-tag">Fine-tuning</span>
+                                <span class="skill-tag">Deep Learning</span>
+                                <span class="skill-tag">NLP</span>
+                                <span class="skill-tag">Computer Vision</span>
                             </div>
                         </div>
                     </div>
 
                     <div>
                         <div class="skill-category">
-                            <span class="skill-category-label">Languages & Frameworks</span>
+                            <span class="skill-category-label">Cloud & MLOps</span>
                             <div class="skills">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">SQL</span>
-                                <span class="skill-tag">PyTorch</span>
-                                <span class="skill-tag">TensorFlow</span>
-                                <span class="skill-tag">FastAPI</span>
-                                <span class="skill-tag">Pydantic</span>
+                                <span class="skill-tag">Azure Functions</span>
+                                <span class="skill-tag">Azure APIM</span>
+                                <span class="skill-tag">Azure Key Vault</span>
+                                <span class="skill-tag">Azure Blob Storage</span>
+                                <span class="skill-tag">Databricks</span>
+                                <span class="skill-tag">Azure OpenAI</span>
+                                <span class="skill-tag">AWS Lambda</span>
+                                <span class="skill-tag">AWS ECR</span>
+                                <span class="skill-tag">AWS S3</span>
+                                <span class="skill-tag">API Gateway</span>
+                                <span class="skill-tag">CloudFront</span>
+                                <span class="skill-tag">CloudWatch</span>
+                                <span class="skill-tag">Terraform</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">GitHub Actions CI/CD</span>
+                                <span class="skill-tag">Snyk</span>
+                                <span class="skill-tag">SonarCloud</span>
+                                <span class="skill-tag">LLMOps</span>
+                                <span class="skill-tag">Async Inference</span>
                             </div>
                         </div>
 
                         <div class="skill-category">
-                            <span class="skill-category-label">Cloud & MLOps</span>
+                            <span class="skill-category-label">Languages & APIs</span>
                             <div class="skills">
-                                <span class="skill-tag">Azure Functions</span>
-                                <span class="skill-tag">Databricks</span>
-                                <span class="skill-tag">Docker</span>
-                                <span class="skill-tag">GitHub Actions</span>
+                                <span class="skill-tag">Python (Advanced)</span>
+                                <span class="skill-tag">SQL (Advanced)</span>
                                 <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">REST APIs</span>
+                                <span class="skill-tag">Azure Document Intelligence</span>
+                                <span class="skill-tag">Microsoft Graph API</span>
+                                <span class="skill-tag">Pydantic</span>
+                                <span class="skill-tag">Pandas</span>
+                                <span class="skill-tag">NumPy</span>
                             </div>
                         </div>
                     </div>
@@ -1072,8 +1208,29 @@
             </div>
         </section>
 
+        <!-- Projects Section with Clickable Keywords -->
+        <section class="projects-showcase">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Projects</h2>
+                    <p>Click on any project to explore the details</p>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="projects-filter">
+                    <button class="tab-btn active" onclick="filterProjects('company'); event.preventDefault()">Company Projects</button>
+                    <button class="tab-btn" onclick="filterProjects('personal'); event.preventDefault()">Personal Projects</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Projects will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
-        <section class="contact">
+        <section class="contact" id="contact-section">
             <div class="container">
                 <div class="section-header">
                     <h2>Let's Connect</h2>
@@ -1081,9 +1238,9 @@
                 </div>
                 <div class="contact-links">
                     <a href="mailto:reddish.rb@gmail.com" class="contact-link">📧 Email</a>
+                    <a href="tel:+918981770314" class="contact-link">📱 Phone</a>
                     <a href="https://www.linkedin.com/in/raktimabarman96/" target="_blank" class="contact-link">💼 LinkedIn</a>
                     <a href="https://github.com/RB-96" target="_blank" class="contact-link">🐙 GitHub</a>
-                    <a href="#" class="contact-link">📍 Bangalore</a>
                 </div>
             </div>
         </section>
@@ -1366,6 +1523,31 @@
                     'Critical for accurate financial document interpretation.'
                 ],
                 impact: '83% precision gain over baseline in table-footnote association.'
+            },
+            retinal_segmentation: {
+                title: 'Deep Learning Model for Retinal Vessel Segmentation',
+                category: 'personal',
+                emoji: '🔬',
+                shortDesc: 'M.Tech thesis project achieving 98.17% AUC with Dense-Inception UNet, Spatial Attention, and DropBlock regularization.',
+                description: 'Advanced segmentation architecture for retinal blood vessel segmentation combining Dense-Inception UNet with Spatial Attention and DropBlock regularization. Achieved 98.17% AUC on CHASE DB dataset, addressing medical imaging challenges with innovative deep learning techniques.',
+                metrics: {
+                    'AUC (CHASE DB)': '98.17%',
+                    'Sensitivity (CHASE DB)': '90.55%',
+                    'Sensitivity (DRIVE)': '88.07%'
+                },
+                techStack: ['PyTorch', 'TensorFlow', 'U-Net', 'Deep Learning', 'Medical Imaging', 'Python', 'OpenCV'],
+                details: [
+                    'Designed Dense-Inception UNet architecture combining inception-res blocks and dense inception modules.',
+                    'Inception-res blocks ensure network width without overfitting or vanishing gradient problems.',
+                    'Dense inception modules increase network depth while maintaining parameter efficiency.',
+                    'Implemented DropBlock regularization instead of standard dropout for CNNs to block information flow from entire regions.',
+                    'Integrated spatial attention modules to enhance vessel feature detection and suppress background noise.',
+                    'Experimented with 5 loss functions (log-cosh dice, Tversky, Combo) optimized for imbalanced medical datasets.',
+                    'Evaluated on three benchmarks: CHASE DB, DRIVE, and STARE datasets.',
+                    'Sensitivity of 0.8807 (DRIVE) and 0.8595 (STARE), superior to other U-Net variants.',
+                    'Addresses practical medical imaging challenges: vessel edge detection, noise robustness, scale variation handling.'
+                ],
+                impact: 'Achieved highest sensitivity metrics (90.55% CHASE DB) among U-Net variants with similar configurations. State-of-the-art results in retinal vessel segmentation for medical image analysis.'
             },
             mediraga: {
                 title: 'Mediraga - Medical Consultant AI',
