@@ -974,6 +974,11 @@
             z-index: 1;
         }
 
+        .projects-showcase .section-header p {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
         .projects-filter {
             display: flex;
             gap: 1rem;
@@ -1031,14 +1036,16 @@
         .project-content h3 {
             font-size: 1.3rem;
             margin-bottom: 0.75rem;
-            color: var(--text-dark);
+            color: var(--primary-color);
+            font-weight: 700;
         }
 
         .project-content p {
-            color: var(--text-light);
+            color: var(--text-dark);
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
             line-height: 1.6;
+            font-weight: 500;
         }
 
         .project-tags {
@@ -1411,7 +1418,7 @@
                 <li><button onclick="showPage('home')" class="nav-btn">Home</button></li>
                 <li><button onclick="showPage('experience')" class="nav-btn">Experience</button></li>
                 <li><button onclick="showPage('projects')" class="nav-btn">Projects</button></li>
-                <li><button id="contactBtn" onclick="document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' })">Contact</button></li>
+                <li><button id="contactBtn" onclick="showPage('home'); setTimeout(() => { document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' }); }, 100)">Contact</button></li>
             </ul>
         </div>
     </nav>
@@ -1428,6 +1435,7 @@
                 <div class="cta-buttons" style="margin-top: 3rem;">
                     <a href="#about" class="btn btn-primary">Learn More</a>
                     <button onclick="showPage('experience')" class="btn btn-secondary">View Experience</button>
+                    <button onclick="showPage('projects')" class="btn btn-secondary">View Projects</button>
                 </div>
             </div>
         </section>
@@ -1543,27 +1551,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section with Clickable Keywords -->
-        <section class="projects-showcase">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Featured Projects</h2>
-                    <p>Click on any project to explore the details</p>
-                </div>
-
-                <!-- Filter Tabs -->
-                <div class="projects-filter">
-                    <button class="tab-btn active" onclick="filterProjects('company'); event.preventDefault()">Company Projects</button>
-                    <button class="tab-btn" onclick="filterProjects('personal'); event.preventDefault()">Personal Projects</button>
-                </div>
-
-                <!-- Projects Grid -->
-                <div class="projects-grid" id="projects-grid">
-                    <!-- Projects will be loaded here by JavaScript -->
                 </div>
             </div>
         </section>
@@ -1986,15 +1973,31 @@
         function filterProjects(category) {
             currentFilter = category;
             
-            // Update active button
-            document.querySelectorAll('.tab-btn').forEach(btn => {
+            // Update active button - find all tab-btn buttons
+            const allButtons = document.querySelectorAll('.tab-btn');
+            allButtons.forEach((btn, index) => {
+                // Remove active from all buttons
                 btn.classList.remove('active');
+                
+                // Check which button corresponds to which category
+                const buttonText = btn.textContent.toLowerCase();
+                
+                if ((category === 'company' && buttonText.includes('company')) ||
+                    (category === 'personal' && buttonText.includes('personal'))) {
+                    btn.classList.add('active');
+                }
             });
-            event.target.classList.add('active');
 
+            // Find and populate the projects grid
             const grid = document.getElementById('projects-grid');
+            if (!grid) {
+                console.log('Projects grid not found');
+                return;
+            }
+            
             grid.innerHTML = '';
 
+            // Get all projects that match the category
             Object.entries(projectsData).forEach(([key, project]) => {
                 if (project.category === category) {
                     const card = document.createElement('div');
