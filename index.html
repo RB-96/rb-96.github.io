@@ -46,12 +46,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes slideInLeft {
@@ -77,50 +73,8 @@
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
-            }
-        }
-
-        /* Navigation */
-        nav {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            animation: slideInDown 0.6s ease-out;
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes slideInDown {
@@ -132,6 +86,32 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* Page transition */
+        .page {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideInDown 0.6s ease-out;
         }
 
         nav .container {
@@ -150,7 +130,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
-            letter-spacing: -0.5px;
+            cursor: pointer;
         }
 
         nav ul {
@@ -159,15 +139,18 @@
             gap: 2rem;
         }
 
-        nav a {
+        nav a, nav button {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            border: none;
+            background: none;
+            cursor: pointer;
         }
 
-        nav a::after {
+        nav a::after, nav button::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -178,7 +161,7 @@
             transition: width 0.3s ease;
         }
 
-        nav a:hover::after {
+        nav a:hover::after, nav button:hover::after {
             width: 100%;
         }
 
@@ -186,6 +169,27 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .breadcrumb a, .breadcrumb button {
+            color: var(--primary-color);
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover, .breadcrumb button:hover {
+            text-decoration: underline;
         }
 
         /* Hero Section */
@@ -220,7 +224,6 @@
             margin-bottom: 0.5rem;
             font-weight: 800;
             animation: slideInUp 0.8s ease-out;
-            letter-spacing: -1px;
         }
 
         .hero .subtitle {
@@ -325,30 +328,35 @@
             background-color: var(--white);
         }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+        /* Full width about */
+        .about-full {
+            margin-bottom: 3rem;
+            animation: slideInUp 0.8s ease-out;
         }
 
-        .about-text h3 {
+        .about-full h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
 
-        .about-text p {
-            margin-bottom: 1rem;
+        .about-full p {
             color: var(--text-light);
             line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
         }
 
         .impact-metrics {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            margin-top: 2rem;
+            margin: 2rem 0;
         }
 
         .metric {
@@ -424,13 +432,32 @@
             display: block;
         }
 
-        .about-image {
+        /* Projects List in Hero */
+        .projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: slideInUp 0.8s ease-out 0.4s both;
+        }
+
+        .project-item-hero {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--white);
+            font-weight: 600;
             text-align: center;
         }
 
-        .about-image div {
-            animation: float 4s ease-in-out infinite;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        .project-item-hero:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         /* Experience Section */
@@ -441,7 +468,7 @@
 
         .experience-timeline {
             position: relative;
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
         }
 
@@ -454,7 +481,6 @@
             border-left: 5px solid var(--primary-color);
             animation: slideInUp 0.6s ease-out backwards;
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .experience-item:nth-child(1) { animation-delay: 0s; }
@@ -471,7 +497,7 @@
             display: flex;
             justify-content: space-between;
             align-items: start;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
@@ -480,6 +506,13 @@
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-dark);
+        }
+
+        .experience-company {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
         }
 
         .experience-meta {
@@ -504,6 +537,11 @@
             color: var(--text-light);
             margin-bottom: 1.5rem;
             line-height: 1.8;
+            font-style: italic;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #f0f4ff 100%);
+            border-left: 3px solid var(--accent-color);
+            border-radius: 0.25rem;
         }
 
         .project-item {
@@ -518,19 +556,20 @@
         .project-item:hover {
             background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
             box-shadow: 0 5px 15px rgba(124, 58, 237, 0.1);
+            transform: translateX(5px);
         }
 
         .project-title {
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-size: 1.1rem;
         }
 
         .project-metrics {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.75rem;
             margin-bottom: 1rem;
         }
 
@@ -539,7 +578,7 @@
             color: var(--white);
             padding: 0.4rem 0.8rem;
             border-radius: 0.25rem;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
         }
 
@@ -553,6 +592,7 @@
             line-height: 1.6;
             padding-left: 1.5rem;
             position: relative;
+            font-size: 0.95rem;
         }
 
         .detail-item::before {
@@ -563,10 +603,39 @@
             font-weight: 700;
         }
 
-        /* Projects Section */
-        .projects {
+        /* Projects Page */
+        .projects-page {
             padding: 5rem 2rem;
             background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        }
+
+        .project-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--border-color);
+            background: var(--white);
+            color: var(--text-dark);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            border-color: transparent;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary-color);
         }
 
         .projects-grid {
@@ -584,6 +653,7 @@
             display: flex;
             flex-direction: column;
             animation: slideInUp 0.6s ease-out backwards;
+            cursor: pointer;
         }
 
         .project-card:nth-child(1) { animation-delay: 0s; }
@@ -678,6 +748,94 @@
             text-decoration: underline;
         }
 
+        /* Project Detail Page */
+        .project-detail {
+            padding: 3rem 2rem;
+            background-color: var(--white);
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .project-detail-header {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+        }
+
+        .project-detail-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-detail-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-detail-hero p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .project-detail-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-section {
+            margin-bottom: 3rem;
+        }
+
+        .detail-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .detail-section p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .detail-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .detail-metric {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f0f4ff 100%);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .detail-metric strong {
+            display: block;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .tech {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
         /* Contact Section */
         .contact {
             padding: 5rem 2rem;
@@ -727,7 +885,6 @@
             color: var(--white);
             text-align: center;
             padding: 2rem;
-            animation: slideInUp 0.8s ease-out;
         }
 
         /* Responsive */
@@ -778,6 +935,14 @@
                 align-items: flex-start;
                 text-align: left;
             }
+
+            .project-tabs {
+                flex-wrap: wrap;
+            }
+
+            .projects-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -785,39 +950,47 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <a href="#home" class="logo">RB</a>
+            <a class="logo" onclick="showPage('home')">RB</a>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><button onclick="showPage('home')" class="nav-btn">Home</button></li>
+                <li><button onclick="showPage('experience')" class="nav-btn">Experience</button></li>
+                <li><button onclick="showPage('projects')" class="nav-btn">Projects</button></li>
+                <li><a href="mailto:reddish.rb@gmail.com">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Raktima Barman</h1>
-            <p class="subtitle">Data Scientist & ML Engineer</p>
-            <p class="tagline">Building Production-Grade AI Systems | GenAI | LLM Systems | Financial Document Intelligence</p>
-            <div class="cta-buttons">
-                <a href="#experience" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
-        </div>
-    </section>
+    <!-- HOME PAGE -->
+    <div id="home-page" class="page active">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Raktima Barman</h1>
+                <p class="subtitle">Data Scientist & ML Engineer</p>
+                <p class="tagline">Building Production-Grade AI Systems | GenAI | LLM Systems | Financial Document Intelligence</p>
+                
+                <!-- Projects List -->
+                <div class="projects-list">
+                    <div class="project-item-hero" onclick="showProjectDetail('remittance')">📄 Remittance Platform</div>
+                    <div class="project-item-hero" onclick="showProjectDetail('ppm')">💬 PPM Variance</div>
+                    <div class="project-item-hero" onclick="showProjectDetail('chart')">📊 Chart Parser</div>
+                    <div class="project-item-hero" onclick="showProjectDetail('footnote')">🔗 Footnote Linker</div>
+                    <div class="project-item-hero" onclick="showProjectDetail('mediraga')">🏥 Mediraga</div>
+                    <div class="project-item-hero" onclick="showProjectDetail('twin')">🤖 Digital Twin</div>
+                </div>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2>About Me</h2>
-                <p>Data Scientist & ML Engineer with 4+ years building enterprise AI systems</p>
+                <div class="cta-buttons" style="margin-top: 3rem;">
+                    <a href="#about" class="btn btn-primary">Learn More</a>
+                    <button onclick="showPage('experience')" class="btn btn-secondary">View Experience</button>
+                </div>
             </div>
-            <div class="about-content">
-                <div class="about-text">
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <!-- Full Width About -->
+                <div class="about-full">
                     <h3>Who I Am</h3>
                     <p>I'm a Data Scientist & ML Engineer with over <strong>4 years</strong> of experience building production-grade AI systems at enterprise scale. Currently at <strong>AB InBev GCC, Bangalore</strong>, architecting enterprise Generative AI and automation platforms for global Order-to-Cash (OTC) finance operations.</p>
                     
@@ -841,209 +1014,552 @@
                             <div class="metric-label">Extraction Accuracy</div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="skill-category">
-                        <span class="skill-category-label">AI / GenAI / LLM</span>
-                        <div class="skills">
-                            <span class="skill-tag">LangChain</span>
-                            <span class="skill-tag">CrewAI</span>
-                            <span class="skill-tag">GPT-4</span>
-                            <span class="skill-tag">Claude</span>
-                            <span class="skill-tag">HuggingFace</span>
-                            <span class="skill-tag">RAG</span>
+                <!-- Skills Grid -->
+                <div class="about-content" style="margin-top: 3rem;">
+                    <div>
+                        <div class="skill-category">
+                            <span class="skill-category-label">AI / GenAI / LLM</span>
+                            <div class="skills">
+                                <span class="skill-tag">LangChain</span>
+                                <span class="skill-tag">CrewAI</span>
+                                <span class="skill-tag">GPT-4</span>
+                                <span class="skill-tag">Claude</span>
+                                <span class="skill-tag">HuggingFace</span>
+                                <span class="skill-tag">RAG</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <span class="skill-category-label">Document Intelligence & OCR</span>
+                            <div class="skills">
+                                <span class="skill-tag">Azure Doc Intelligence</span>
+                                <span class="skill-tag">PaddleOCR</span>
+                                <span class="skill-tag">EasyOCR</span>
+                                <span class="skill-tag">YOLOv8</span>
+                                <span class="skill-tag">DETR</span>
+                                <span class="skill-tag">OpenCV</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skill-category">
-                        <span class="skill-category-label">Document Intelligence & OCR</span>
-                        <div class="skills">
-                            <span class="skill-tag">Azure Doc Intelligence</span>
-                            <span class="skill-tag">PaddleOCR</span>
-                            <span class="skill-tag">EasyOCR</span>
-                            <span class="skill-tag">YOLOv8</span>
-                            <span class="skill-tag">DETR</span>
-                            <span class="skill-tag">OpenCV</span>
+                    <div>
+                        <div class="skill-category">
+                            <span class="skill-category-label">Languages & Frameworks</span>
+                            <div class="skills">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">PyTorch</span>
+                                <span class="skill-tag">TensorFlow</span>
+                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">Pydantic</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="skill-category">
-                        <span class="skill-category-label">Cloud & MLOps</span>
-                        <div class="skills">
-                            <span class="skill-tag">Azure Functions</span>
-                            <span class="skill-tag">Databricks</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">GitHub Actions</span>
-                            <span class="skill-tag">FastAPI</span>
+                        <div class="skill-category">
+                            <span class="skill-category-label">Cloud & MLOps</span>
+                            <div class="skills">
+                                <span class="skill-tag">Azure Functions</span>
+                                <span class="skill-tag">Databricks</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">GitHub Actions</span>
+                                <span class="skill-tag">FastAPI</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        🤖
-                    </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Let's Connect</h2>
+                    <p>Open to collaborations, discussions, and opportunities in AI/ML</p>
                 </div>
+                <div class="contact-links">
+                    <a href="mailto:reddish.rb@gmail.com" class="contact-link">📧 Email</a>
+                    <a href="https://www.linkedin.com/in/raktimabarman96/" target="_blank" class="contact-link">💼 LinkedIn</a>
+                    <a href="https://github.com/RB-96" target="_blank" class="contact-link">🐙 GitHub</a>
+                    <a href="#" class="contact-link">📍 Bangalore</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- EXPERIENCE PAGE -->
+    <div id="experience-page" class="page">
+        <div class="breadcrumb">
+            <div class="container">
+                <button onclick="showPage('home')">Home</button> / <span>Experience</span>
             </div>
         </div>
-    </section>
 
-    <!-- Experience Section -->
-    <section class="experience" id="experience">
-        <div class="container">
-            <div class="section-header">
-                <h2>Professional Experience</h2>
-                <p>4+ years building enterprise AI systems at scale</p>
-            </div>
-            <div class="experience-timeline">
-                <!-- Experience 1 -->
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <div class="experience-title">Data Scientist</div>
-                            <div class="experience-location">AB InBev GCC</div>
-                        </div>
-                        <div class="experience-meta">
-                            <div class="experience-period">May 2025 – Present</div>
-                            <div class="experience-location">Bangalore, India</div>
-                        </div>
-                    </div>
-                    <div class="experience-description">
-                        Building enterprise Generative AI and automation platforms for global Order-to-Cash (OTC) finance operations.
-                    </div>
-
-                    <!-- Project 1.1 -->
-                    <div class="project-item">
-                        <div class="project-title">🚀 Remittance & Disputes Automation Platform — Live | 7 Countries</div>
-                        <div class="project-metrics">
-                            <span class="metric-badge">★ 88% Touchless Processing</span>
-                            <span class="metric-badge">★ USD 900K+ FTE Savings p.a.</span>
-                            <span class="metric-badge">★ USD 2.9M Overdraft Prevention</span>
-                            <span class="metric-badge">★ 96% Extraction Accuracy</span>
-                        </div>
-                        <div class="project-details">
-                            <div class="detail-item">Architected an end-to-end LLM-native remittance reconciliation pipeline supporting multi-format inputs (Excel, native PDF, scanned PDF, images, email body) across Botswana, Dominican Republic, Guatemala, Uganda, India, UK, and France.</div>
-                            <div class="detail-item">Engineered a multi-layer document extraction engine: Pandas (Excel) → PyPDF/PDFPlumber (native PDF) → Azure Document Intelligence with PaddleOCR/EasyOCR fallback (scanned/image), converting all formats to structured Markdown.</div>
-                            <div class="detail-item">Designed a three-layer Azure OpenAI prompt system (instruction + JSON schema + guardrails) with Pydantic schema validation, converting LLM outputs to structured financial objects stored in SQL Server.</div>
-                            <div class="detail-item">Built an LLM-based email classifier (Microsoft Graph API + keyword matching) to auto-route remittance emails; 30-minute analyst review window for edge cases, reducing analyst effort by 70%.</div>
-                            <div class="detail-item">Deployed via Azure Function Apps (Timer Triggers/country); secrets in Key Vault; files in Blob Storage; CI/CD via GitHub Actions with Snyk, SonarCloud, and Apiiro — ensuring MICS compliance.</div>
-                            <div class="detail-item">Built LLM evaluation & drift-detection framework for continuous monitoring of extraction accuracy and document-level performance.</div>
-                        </div>
-                    </div>
-
-                    <!-- Project 1.2 -->
-                    <div class="project-item">
-                        <div class="project-title">💬 PPM Variance Analysis — Multi-Agent Conversational AI (Piloted)</div>
-                        <div class="project-metrics">
-                            <span class="metric-badge">★ 80% Query Resolution</span>
-                            <span class="metric-badge">★ Avg. 1.4 Iterations</span>
-                            <span class="metric-badge">★ ~65% Faster Insights</span>
-                            <span class="metric-badge">★ Zero Hallucinated Financials</span>
-                        </div>
-                        <div class="project-details">
-                            <div class="detail-item">Designed and deployed a multi-agent AI framework (CrewAI) enabling analysts to query Price-Pack-Market variance data in natural language; agents auto-generate, self-correct, and validate SQL.</div>
-                            <div class="detail-item">Stack: Azure Databricks (data layer) + CrewAI (orchestration) + FastAPI (API layer); piloted in SAZ market — 467-person BU, USD 25M financial scope; executive sponsorship secured for broader rollout.</div>
-                        </div>
-                    </div>
+        <section class="experience">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Professional Experience</h2>
+                    <p>4+ years building enterprise AI systems at scale</p>
                 </div>
+                <div class="experience-timeline">
+                    <!-- Experience 1: AB InBev -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Data Scientist</div>
+                                <div class="experience-company">AB InBev GCC</div>
+                            </div>
+                            <div class="experience-meta">
+                                <div class="experience-period">May 2025 – Present</div>
+                                <div class="experience-location">Bangalore, India</div>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            Building enterprise Generative AI and automation platforms for global Order-to-Cash (OTC) finance operations.
+                        </div>
 
-                <!-- Experience 2 -->
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <div class="experience-title">Machine Learning Engineer</div>
-                            <div class="experience-location">73 Strings</div>
+                        <!-- Project 1.1 -->
+                        <div class="project-item">
+                            <div class="project-title">🚀 Remittance & Disputes Automation Platform — Live | 7 Countries</div>
+                            <div class="project-metrics">
+                                <span class="metric-badge">★ 88% Touchless Processing</span>
+                                <span class="metric-badge">★ USD 900K+ FTE Savings</span>
+                                <span class="metric-badge">★ USD 2.9M Overdraft Prevention</span>
+                                <span class="metric-badge">★ 96% Extraction Accuracy</span>
+                            </div>
+                            <div class="project-details">
+                                <div class="detail-item">Architected an end-to-end LLM-native remittance reconciliation pipeline supporting multi-format inputs (Excel, native PDF, scanned PDF, images, email body) across Botswana, Dominican Republic, Guatemala, Uganda, India, UK, and France.</div>
+                                <div class="detail-item">Engineered a multi-layer document extraction engine: Pandas (Excel) → PyPDF/PDFPlumber (native PDF) → Azure Document Intelligence with PaddleOCR/EasyOCR fallback (scanned/image), converting all formats to structured Markdown.</div>
+                                <div class="detail-item">Designed a three-layer Azure OpenAI prompt system (instruction + JSON schema + guardrails) with Pydantic schema validation, converting LLM outputs to structured financial objects stored in SQL Server.</div>
+                                <div class="detail-item">Built an LLM-based email classifier (Microsoft Graph API + keyword matching) to auto-route remittance emails; 30-minute analyst review window for edge cases, reducing analyst effort by 70%.</div>
+                                <div class="detail-item">Deployed via Azure Function Apps (Timer Triggers/country); secrets in Key Vault; files in Blob Storage; CI/CD via GitHub Actions with Snyk, SonarCloud, and Apiiro — ensuring MICS compliance.</div>
+                                <div class="detail-item">Built LLM evaluation & drift-detection framework for continuous monitoring of extraction accuracy and document-level performance.</div>
+                            </div>
                         </div>
-                        <div class="experience-meta">
-                            <div class="experience-period">Apr 2024 – May 2025</div>
-                            <div class="experience-location">Bangalore, India</div>
-                        </div>
-                    </div>
-                    <div class="experience-description">
-                        Fintech startup delivering AI-native document intelligence for institutional fund managers.
-                    </div>
 
-                    <div class="project-item">
-                        <div class="project-metrics">
-                            <span class="metric-badge">★ 90%+ Extraction Accuracy</span>
-                            <span class="metric-badge">★ 83% Table-Footnote Precision Gain</span>
-                            <span class="metric-badge">★ Enterprise-Scale Async Inference</span>
-                        </div>
-                        <div class="project-details">
-                            <div class="detail-item">Developed PyTorch CV+NLP pipelines to extract structured data from financial charts, paragraphs, and multi-format documents — achieving 90%+ extraction accuracy.</div>
-                            <div class="detail-item">Improved table-footnote association precision by 83% using DETR-based document layout modelling.</div>
-                            <div class="detail-item">Built an LLM-powered natural language analytics platform, converting user queries to validated structured analytical workflows.</div>
-                            <div class="detail-item">Designed async batching and latency optimisation for enterprise-scale inference; implemented robust validation and monitoring loops in production.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experience 3 -->
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <div class="experience-title">Data Scientist</div>
-                            <div class="experience-location">Aidetic Software Pvt. Ltd.</div>
-                        </div>
-                        <div class="experience-meta">
-                            <div class="experience-period">Feb 2023 – Mar 2024</div>
-                            <div class="experience-location">Bangalore, India</div>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-metrics">
-                            <span class="metric-badge">★ 85% Extraction Accuracy Gain</span>
-                            <span class="metric-badge">★ 150+ Docs/Day via FastAPI</span>
-                        </div>
-                        <div class="project-details">
-                            <div class="detail-item">Boosted enterprise document-extraction accuracy by 85% through dataset curation, model retraining, and evaluation-driven optimisation.</div>
-                            <div class="detail-item">Engineered a YOLO-based object detection pipeline for multi-format document parsing; real-time FastAPI inference serving 150+ documents/day across enterprise business units.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experience 4 -->
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <div class="experience-title">Research Scientist</div>
-                            <div class="experience-location">IIT Kharagpur — Centre of Excellence for AI</div>
-                        </div>
-                        <div class="experience-meta">
-                            <div class="experience-period">Aug 2021 – Jan 2023</div>
-                            <div class="experience-location">Kharagpur, India</div>
+                        <!-- Project 1.2 -->
+                        <div class="project-item">
+                            <div class="project-title">💬 PPM Variance Analysis — Multi-Agent Conversational AI (Piloted)</div>
+                            <div class="project-metrics">
+                                <span class="metric-badge">★ 80% Query Resolution</span>
+                                <span class="metric-badge">★ Avg. 1.4 Iterations</span>
+                                <span class="metric-badge">★ ~65% Faster Insights</span>
+                                <span class="metric-badge">★ Zero Hallucinated Financials</span>
+                            </div>
+                            <div class="project-details">
+                                <div class="detail-item">Designed and deployed a multi-agent AI framework (CrewAI) enabling analysts to query Price-Pack-Market variance data in natural language; agents auto-generate, self-correct, and validate SQL.</div>
+                                <div class="detail-item">Stack: Azure Databricks (data layer) + CrewAI (orchestration) + FastAPI (API layer); piloted in SAZ market — 467-person BU, USD 25M financial scope.</div>
+                                <div class="detail-item">Executive sponsorship secured for broader rollout across all markets.</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="project-item">
-                        <div class="project-details">
-                            <div class="detail-item">Achieved 85% Dice/F1 score in satellite-imagery segmentation using deep-learning pipelines with targeted augmentation.</div>
-                            <div class="detail-item">Mentored 3 junior researchers on experimentation design, model validation, and reproducibility standards.</div>
+                    <!-- Experience 2: 73 Strings -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Machine Learning Engineer</div>
+                                <div class="experience-company">73 Strings</div>
+                            </div>
+                            <div class="experience-meta">
+                                <div class="experience-period">Apr 2024 – May 2025</div>
+                                <div class="experience-location">Bangalore, India</div>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            Fintech startup delivering AI-native document intelligence for institutional fund managers.
+                        </div>
+                        <div class="project-item">
+                            <div class="project-metrics">
+                                <span class="metric-badge">★ 90%+ Extraction Accuracy</span>
+                                <span class="metric-badge">★ 83% Table-Footnote Precision Gain</span>
+                                <span class="metric-badge">★ Enterprise-Scale Async Inference</span>
+                            </div>
+                            <div class="project-details">
+                                <div class="detail-item">Developed PyTorch CV+NLP pipelines to extract structured data from financial charts, paragraphs, and multi-format documents — achieving 90%+ extraction accuracy.</div>
+                                <div class="detail-item">Improved table-footnote association precision by 83% using DETR-based document layout modelling.</div>
+                                <div class="detail-item">Built an LLM-powered natural language analytics platform, converting user queries to validated structured analytical workflows.</div>
+                                <div class="detail-item">Designed async batching and latency optimisation for enterprise-scale inference; implemented robust validation and monitoring loops in production.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 3: Aidetic Software -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Data Scientist</div>
+                                <div class="experience-company">Aidetic Software Pvt. Ltd.</div>
+                            </div>
+                            <div class="experience-meta">
+                                <div class="experience-period">Feb 2023 – Mar 2024</div>
+                                <div class="experience-location">Bangalore, India</div>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-metrics">
+                                <span class="metric-badge">★ 85% Extraction Accuracy Gain</span>
+                                <span class="metric-badge">★ 150+ Docs/Day via FastAPI</span>
+                            </div>
+                            <div class="project-details">
+                                <div class="detail-item">Boosted enterprise document-extraction accuracy by 85% through dataset curation, model retraining, and evaluation-driven optimisation.</div>
+                                <div class="detail-item">Engineered a YOLO-based object detection pipeline for multi-format document parsing; real-time FastAPI inference serving 150+ documents/day across enterprise business units.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 4: IIT Kharagpur -->
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Research Scientist</div>
+                                <div class="experience-company">IIT Kharagpur — Centre of Excellence for AI</div>
+                            </div>
+                            <div class="experience-meta">
+                                <div class="experience-period">Aug 2021 – Jan 2023</div>
+                                <div class="experience-location">Kharagpur, India</div>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-details">
+                                <div class="detail-item">Achieved 85% Dice/F1 score in satellite-imagery segmentation using deep-learning pipelines with targeted augmentation.</div>
+                                <div class="detail-item">Mentored 3 junior researchers on experimentation design, model validation, and reproducibility standards.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Let's Connect</h2>
-                <p>Open to collaborations, discussions, and opportunities in AI/ML</p>
-            </div>
-            <div class="contact-links">
-                <a href="mailto:reddish.rb@gmail.com" class="contact-link">📧 Email</a>
-                <a href="https://www.linkedin.com/in/raktimabarman96/" target="_blank" class="contact-link">💼 LinkedIn</a>
-                <a href="https://github.com/RB-96" target="_blank" class="contact-link">🐙 GitHub</a>
-                <a href="#" class="contact-link">📍 Bangalore</a>
+    <!-- PROJECTS PAGE -->
+    <div id="projects-page" class="page">
+        <div class="breadcrumb">
+            <div class="container">
+                <button onclick="showPage('home')">Home</button> / <span>Projects</span>
             </div>
         </div>
-    </section>
+
+        <section class="projects-page">
+            <div class="container">
+                <div class="section-header">
+                    <h2>My Projects</h2>
+                    <p>Showcasing both company and personal projects</p>
+                </div>
+
+                <div class="project-tabs">
+                    <button class="tab-btn active" onclick="filterProjects('company')">🏢 Company Projects</button>
+                    <button class="tab-btn" onclick="filterProjects('personal')">👤 Personal Projects</button>
+                </div>
+
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Projects will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PROJECT DETAIL PAGES -->
+    <div id="project-detail-page" class="page">
+        <div class="breadcrumb">
+            <div class="container">
+                <button onclick="showPage('home')">Home</button> / <button onclick="showPage('projects')">Projects</button> / <span id="detail-breadcrumb"></span>
+            </div>
+        </div>
+        <section class="project-detail">
+            <div id="project-detail-content"></div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Raktima Barman. Crafted with ❤️ and AI</p>
     </footer>
+
+    <script>
+        // Project Data
+        const projectsData = {
+            remittance: {
+                title: 'Remittance & Disputes Automation Platform',
+                category: 'company',
+                emoji: '📄',
+                shortDesc: 'End-to-end LLM-native remittance reconciliation pipeline supporting multi-format inputs across 7 countries.',
+                description: 'Architected an end-to-end LLM-native remittance reconciliation pipeline supporting multi-format inputs (Excel, native PDF, scanned PDF, images, email body) across Botswana, Dominican Republic, Guatemala, Uganda, India, UK, and France.',
+                metrics: {
+                    'Touchless Processing': '88%',
+                    'FTE Savings p.a.': '$900K+',
+                    'Overdraft Prevention': '$2.9M',
+                    'Extraction Accuracy': '96%'
+                },
+                techStack: ['Python', 'Azure OpenAI', 'Pandas', 'PyPDF', 'PaddleOCR', 'EasyOCR', 'Pydantic', 'Azure Functions', 'SQL Server', 'GitHub Actions'],
+                details: [
+                    'Engineered a multi-layer document extraction engine: Pandas (Excel) → PyPDF/PDFPlumber (native PDF) → Azure Document Intelligence with PaddleOCR/EasyOCR fallback (scanned/image), converting all formats to structured Markdown.',
+                    'Designed a three-layer Azure OpenAI prompt system (instruction + JSON schema + guardrails) with Pydantic schema validation, converting LLM outputs to structured financial objects stored in SQL Server.',
+                    'Built an LLM-based email classifier (Microsoft Graph API + keyword matching) to auto-route remittance emails; 30-minute analyst review window for edge cases, reducing analyst effort by 70%.',
+                    'Deployed via Azure Function Apps (Timer Triggers/country); secrets in Key Vault; files in Blob Storage; CI/CD via GitHub Actions with Snyk, SonarCloud, and Apiiro — ensuring MICS compliance.',
+                    'Built LLM evaluation & drift-detection framework for continuous monitoring of extraction accuracy and document-level performance.'
+                ],
+                impact: 'Live in 7 countries, processing critical financial operations with $2.9M in direct overdraft prevention.'
+            },
+            ppm: {
+                title: 'PPM Variance Analysis — Multi-Agent Conversational AI',
+                category: 'company',
+                emoji: '💬',
+                shortDesc: 'Multi-agent AI framework for natural language financial analytics with 80% query resolution accuracy.',
+                description: 'Designed and deployed a multi-agent AI framework enabling analysts to query Price-Pack-Market variance data in natural language; agents auto-generate, self-correct, and validate SQL.',
+                metrics: {
+                    'Query Resolution': '80%',
+                    'Avg. Iterations': '1.4',
+                    'Time to Insight': '65% Faster',
+                    'Accuracy': '100% (Zero Hallucinations)'
+                },
+                techStack: ['CrewAI', 'Azure Databricks', 'FastAPI', 'LangChain', 'GPT-4', 'Python'],
+                details: [
+                    'Designed multi-agent AI framework (CrewAI) enabling natural language queries on financial data.',
+                    'Agents auto-generate SQL, self-correct, and validate outputs against schema.',
+                    'Stack: Azure Databricks (data layer) + CrewAI (orchestration) + FastAPI (API layer).',
+                    'Piloted in SAZ market — 467-person BU, $25M financial scope.',
+                    'Executive sponsorship secured for broader rollout across all markets.'
+                ],
+                impact: 'Piloted with executive backing for enterprise-wide rollout.'
+            },
+            chart: {
+                title: 'Chart Parser',
+                category: 'company',
+                emoji: '📊',
+                shortDesc: 'Financial insight extraction from charts in PDF reports using custom CV models.',
+                description: 'Financial insight extraction from charts in PDF reports using custom CV models. Automatically identifies, extracts, and interprets complex financial visualizations.',
+                metrics: {
+                    'Extraction Accuracy': '90%+',
+                    'Processing Speed': 'Real-time',
+                    'Chart Types': 'Multi-format'
+                },
+                techStack: ['YOLOv8', 'OpenCV', 'Azure OpenAI', 'PyTorch', 'Python'],
+                details: [
+                    'Developed custom YOLO-based model for chart detection in PDFs.',
+                    'Extracts chart data and converts to structured format.',
+                    'Uses Azure OpenAI to generate financial insights from extracted data.',
+                    'Handles bar charts, line charts, pie charts, and complex multi-series visualizations.',
+                    '90%+ accuracy across diverse chart types and financial documents.'
+                ],
+                impact: '90%+ accuracy on diverse chart types across enterprise financial documents.'
+            },
+            footnote: {
+                title: 'Footnote-Table Linker',
+                category: 'company',
+                emoji: '🔗',
+                shortDesc: 'DETR-based document layout model to associate footnotes with parent table rows.',
+                description: 'DETR-based document layout model to associate footnotes with their parent table rows in financial documents. Solves complex spatial reasoning in structured PDFs.',
+                metrics: {
+                    'Precision Improvement': '83%',
+                    'Accuracy': 'Enterprise-grade',
+                    'Processing': 'Batch-capable'
+                },
+                techStack: ['PyTorch', 'DETR', 'OCR', 'LLMs', 'Python'],
+                details: [
+                    'Trained DETR-based model for document layout understanding.',
+                    'Identifies spatial relationships between footnotes and table elements.',
+                    '83% improvement in association precision vs baseline methods.',
+                    'Handles complex multi-column layouts and nested tables.',
+                    'Critical for accurate financial document interpretation.'
+                ],
+                impact: '83% precision gain over baseline in table-footnote association.'
+            },
+            mediraga: {
+                title: 'Mediraga - Medical Consultant AI',
+                category: 'personal',
+                emoji: '🏥',
+                shortDesc: 'AI assistant that helps doctors curate patient information and enables rapid physician consultation via prescription uploads.',
+                description: 'Medical consultant AI that assists doctors to curate information about patients and enables patients to quickly get in touch with doctors by uploading prescriptions in case of emergency.',
+                metrics: {
+                    'Document Processing': 'Real-time',
+                    'Doctor Network': 'Scalable',
+                    'Emergency Response': 'Fast-track'
+                },
+                techStack: ['TypeScript', 'React', 'FastAPI', 'OpenAI', 'OCR', 'AWS'],
+                details: [
+                    'Built AI system to extract prescription information from images.',
+                    'Assists doctors in curating patient medical histories.',
+                    'Enables emergency rapid consultation with specialists.',
+                    'Prescription-based matching with available physicians.',
+                    'HIPAA-compliant patient data management.',
+                    'Real-time emergency routing system.'
+                ],
+                impact: 'Personal project showcasing healthcare AI application development.',
+                github: 'https://github.com/RB-96/mediraga'
+            },
+            twin: {
+                title: 'AI Digital Twin',
+                category: 'personal',
+                emoji: '🤖',
+                shortDesc: 'Conversational AI that acts as a digital representation of professionals with AWS cloud infrastructure.',
+                description: 'A conversational AI that acts as a digital representation of professionals. Built with FastAPI, OpenAI, AWS Lambda, and CloudFront for global delivery. Deployed with professional cloud infrastructure.',
+                metrics: {
+                    'Deployment': 'Global via CloudFront',
+                    'Response Accuracy': '95%+',
+                    'Query Types': 'Multi-modal'
+                },
+                techStack: ['Python', 'FastAPI', 'AWS Lambda', 'CloudFront', 'S3', 'API Gateway', 'OpenAI', 'Mangum'],
+                details: [
+                    'Conversational AI representing professional personas.',
+                    'Built with FastAPI for high-performance API.',
+                    'Deployed on AWS Lambda for serverless architecture.',
+                    'CloudFront for global, low-latency content delivery.',
+                    'S3 for conversation memory persistence.',
+                    'Supports multi-turn conversations with context awareness.',
+                    'Professional cloud-native architecture demonstrating DevOps practices.'
+                ],
+                impact: 'Full-stack AI project demonstrating cloud deployment expertise.',
+                github: 'https://github.com/RB-96'
+            }
+        };
+
+        let currentFilter = 'company';
+
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            if (pageName === 'projects') {
+                document.getElementById('projects-page').classList.add('active');
+                filterProjects(currentFilter);
+            } else if (pageName === 'experience') {
+                document.getElementById('experience-page').classList.add('active');
+            } else if (pageName === 'home') {
+                document.getElementById('home-page').classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function filterProjects(category) {
+            currentFilter = category;
+            
+            // Update active button
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const grid = document.getElementById('projects-grid');
+            grid.innerHTML = '';
+
+            Object.entries(projectsData).forEach(([key, project]) => {
+                if (project.category === category) {
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.onclick = () => showProjectDetail(key);
+                    card.innerHTML = `
+                        <div class="project-image">${project.emoji}</div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span class="project-tag">${category === 'company' ? 'COMPANY' : 'PERSONAL'}</span>
+                            </div>
+                            <h3>${project.title}</h3>
+                            <p>${project.shortDesc}</p>
+                            <div class="project-links">
+                                <a href="#" onclick="event.preventDefault(); showProjectDetail('${key}')">View Details →</a>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                }
+            });
+        }
+
+        function showProjectDetail(projectKey) {
+            const project = projectsData[projectKey];
+            document.getElementById('detail-breadcrumb').textContent = project.title;
+
+            let detailHTML = `
+                <div class="project-detail-header">
+                    <div class="project-detail-hero">
+                        <h1>${project.emoji} ${project.title}</h1>
+                        <p>${project.description}</p>
+                    </div>
+
+                    <div class="project-detail-content">
+                        <div class="detail-section">
+                            <h2>Key Metrics</h2>
+                            <div class="detail-metrics">
+            `;
+
+            Object.entries(project.metrics).forEach(([key, value]) => {
+                detailHTML += `
+                    <div class="detail-metric">
+                        <strong>${value}</strong>
+                        <span>${key}</span>
+                    </div>
+                `;
+            });
+
+            detailHTML += `
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h2>Project Overview</h2>
+                            <p>${project.description}</p>
+            `;
+
+            if (project.details) {
+                project.details.forEach(detail => {
+                    detailHTML += `<p style="margin-bottom: 1rem;">▸ ${detail}</p>`;
+                });
+            }
+
+            detailHTML += `
+                        </div>
+
+                        <div class="detail-section">
+                            <h2>Technology Stack</h2>
+                            <div class="tech-stack">
+            `;
+
+            project.techStack.forEach(tech => {
+                detailHTML += `<span class="tech">${tech}</span>`;
+            });
+
+            detailHTML += `
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h2>Impact</h2>
+                            <p><strong>${project.impact}</strong></p>
+            `;
+
+            if (project.github) {
+                detailHTML += `
+                    <p style="margin-top: 1rem;">
+                        <a href="${project.github}" target="_blank" style="color: var(--primary-color); font-weight: 600;">→ View on GitHub</a>
+                    </p>
+                `;
+            }
+
+            detailHTML += `
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('project-detail-content').innerHTML = detailHTML;
+            document.getElementById('project-detail-page').classList.add('active');
+            document.querySelectorAll('.page').forEach(page => {
+                if (page.id !== 'project-detail-page') page.classList.remove('active');
+            });
+
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize projects grid
+        filterProjects('company');
+    </script>
 </body>
 </html>
