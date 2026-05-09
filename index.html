@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raktima Barman - Data Scientist & ML Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #7c3aed;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideInDown 0.6s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--white);
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            animation: slideInUp 0.8s ease-out;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            animation: slideInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero .tagline {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            font-weight: 300;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease-out 0.3s both;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            animation: slideInUp 0.8s ease-out 0.1s both;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .metric {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f0f4ff 100%);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            animation: slideInUp 0.6s ease-out backwards;
+        }
+
+        .metric:nth-child(1) { animation-delay: 0s; }
+        .metric:nth-child(2) { animation-delay: 0.1s; }
+        .metric:nth-child(3) { animation-delay: 0.2s; }
+        .metric:nth-child(4) { animation-delay: 0.3s; }
+
+        .metric:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .skill-category {
+            margin-top: 2rem;
+        }
+
+        .skill-category-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image div {
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 5rem 2rem;
+            background-color: var(--bg-light);
+        }
+
+        .experience-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background: var(--white);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--primary-color);
+            animation: slideInUp 0.6s ease-out backwards;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .experience-item:nth-child(1) { animation-delay: 0s; }
+        .experience-item:nth-child(2) { animation-delay: 0.1s; }
+        .experience-item:nth-child(3) { animation-delay: 0.2s; }
+        .experience-item:nth-child(4) { animation-delay: 0.3s; }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .experience-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        .experience-period {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .experience-location {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .experience-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-item {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 3px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.1);
+        }
+
+        .project-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .project-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-badge {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .project-details {
+            margin-top: 1rem;
+        }
+
+        .detail-item {
+            margin-bottom: 0.75rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .detail-item::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            animation: slideInUp 0.6s ease-out backwards;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0s; }
+        .project-card:nth-child(2) { animation-delay: 0.1s; }
+        .project-card:nth-child(3) { animation-delay: 0.2s; }
+        .project-card:nth-child(4) { animation-delay: 0.3s; }
+        .project-card:nth-child(5) { animation-delay: 0.4s; }
+        .project-card:nth-child(6) { animation-delay: 0.5s; }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .project-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0.5rem;
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.6s ease-out backwards;
+        }
+
+        .contact-link:nth-child(1) { animation-delay: 0s; }
+        .contact-link:nth-child(2) { animation-delay: 0.1s; }
+        .contact-link:nth-child(3) { animation-delay: 0.2s; }
+        .contact-link:nth-child(4) { animation-delay: 0.3s; }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .impact-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .experience-meta {
+                align-items: flex-start;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#home" class="logo">RB</a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Raktima Barman</h1>
+            <p class="subtitle">Data Scientist & ML Engineer</p>
+            <p class="tagline">Building Production-Grade AI Systems | GenAI | LLM Systems | Financial Document Intelligence</p>
+            <div class="cta-buttons">
+                <a href="#experience" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>Data Scientist & ML Engineer with 4+ years building enterprise AI systems</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Who I Am</h3>
+                    <p>I'm a Data Scientist & ML Engineer with over <strong>4 years</strong> of experience building production-grade AI systems at enterprise scale. Currently at <strong>AB InBev GCC, Bangalore</strong>, architecting enterprise Generative AI and automation platforms for global Order-to-Cash (OTC) finance operations.</p>
+                    
+                    <p>I specialize in <strong>Generative AI</strong>, <strong>LLM-powered document intelligence</strong>, and <strong>end-to-end financial automation pipelines</strong>. My focus is on building hybrid architectures combining rules, ML, and LLMs for deterministic, hallucination-resistant outputs at scale.</p>
+
+                    <div class="impact-metrics">
+                        <div class="metric">
+                            <div class="metric-value">88%</div>
+                            <div class="metric-label">Touchless Processing</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$900K+</div>
+                            <div class="metric-label">FTE Savings p.a.</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$2.9M</div>
+                            <div class="metric-label">Overdraft Prevention</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">96%</div>
+                            <div class="metric-label">Extraction Accuracy</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <span class="skill-category-label">AI / GenAI / LLM</span>
+                        <div class="skills">
+                            <span class="skill-tag">LangChain</span>
+                            <span class="skill-tag">CrewAI</span>
+                            <span class="skill-tag">GPT-4</span>
+                            <span class="skill-tag">Claude</span>
+                            <span class="skill-tag">HuggingFace</span>
+                            <span class="skill-tag">RAG</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <span class="skill-category-label">Document Intelligence & OCR</span>
+                        <div class="skills">
+                            <span class="skill-tag">Azure Doc Intelligence</span>
+                            <span class="skill-tag">PaddleOCR</span>
+                            <span class="skill-tag">EasyOCR</span>
+                            <span class="skill-tag">YOLOv8</span>
+                            <span class="skill-tag">DETR</span>
+                            <span class="skill-tag">OpenCV</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <span class="skill-category-label">Cloud & MLOps</span>
+                        <div class="skills">
+                            <span class="skill-tag">Azure Functions</span>
+                            <span class="skill-tag">Databricks</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        🤖
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>Professional Experience</h2>
+                <p>4+ years building enterprise AI systems at scale</p>
+            </div>
+            <div class="experience-timeline">
+                <!-- Experience 1 -->
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Data Scientist</div>
+                            <div class="experience-location">AB InBev GCC</div>
+                        </div>
+                        <div class="experience-meta">
+                            <div class="experience-period">May 2025 – Present</div>
+                            <div class="experience-location">Bangalore, India</div>
+                        </div>
+                    </div>
+                    <div class="experience-description">
+                        Building enterprise Generative AI and automation platforms for global Order-to-Cash (OTC) finance operations.
+                    </div>
+
+                    <!-- Project 1.1 -->
+                    <div class="project-item">
+                        <div class="project-title">🚀 Remittance & Disputes Automation Platform — Live | 7 Countries</div>
+                        <div class="project-metrics">
+                            <span class="metric-badge">★ 88% Touchless Processing</span>
+                            <span class="metric-badge">★ USD 900K+ FTE Savings p.a.</span>
+                            <span class="metric-badge">★ USD 2.9M Overdraft Prevention</span>
+                            <span class="metric-badge">★ 96% Extraction Accuracy</span>
+                        </div>
+                        <div class="project-details">
+                            <div class="detail-item">Architected an end-to-end LLM-native remittance reconciliation pipeline supporting multi-format inputs (Excel, native PDF, scanned PDF, images, email body) across Botswana, Dominican Republic, Guatemala, Uganda, India, UK, and France.</div>
+                            <div class="detail-item">Engineered a multi-layer document extraction engine: Pandas (Excel) → PyPDF/PDFPlumber (native PDF) → Azure Document Intelligence with PaddleOCR/EasyOCR fallback (scanned/image), converting all formats to structured Markdown.</div>
+                            <div class="detail-item">Designed a three-layer Azure OpenAI prompt system (instruction + JSON schema + guardrails) with Pydantic schema validation, converting LLM outputs to structured financial objects stored in SQL Server.</div>
+                            <div class="detail-item">Built an LLM-based email classifier (Microsoft Graph API + keyword matching) to auto-route remittance emails; 30-minute analyst review window for edge cases, reducing analyst effort by 70%.</div>
+                            <div class="detail-item">Deployed via Azure Function Apps (Timer Triggers/country); secrets in Key Vault; files in Blob Storage; CI/CD via GitHub Actions with Snyk, SonarCloud, and Apiiro — ensuring MICS compliance.</div>
+                            <div class="detail-item">Built LLM evaluation & drift-detection framework for continuous monitoring of extraction accuracy and document-level performance.</div>
+                        </div>
+                    </div>
+
+                    <!-- Project 1.2 -->
+                    <div class="project-item">
+                        <div class="project-title">💬 PPM Variance Analysis — Multi-Agent Conversational AI (Piloted)</div>
+                        <div class="project-metrics">
+                            <span class="metric-badge">★ 80% Query Resolution</span>
+                            <span class="metric-badge">★ Avg. 1.4 Iterations</span>
+                            <span class="metric-badge">★ ~65% Faster Insights</span>
+                            <span class="metric-badge">★ Zero Hallucinated Financials</span>
+                        </div>
+                        <div class="project-details">
+                            <div class="detail-item">Designed and deployed a multi-agent AI framework (CrewAI) enabling analysts to query Price-Pack-Market variance data in natural language; agents auto-generate, self-correct, and validate SQL.</div>
+                            <div class="detail-item">Stack: Azure Databricks (data layer) + CrewAI (orchestration) + FastAPI (API layer); piloted in SAZ market — 467-person BU, USD 25M financial scope; executive sponsorship secured for broader rollout.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Machine Learning Engineer</div>
+                            <div class="experience-location">73 Strings</div>
+                        </div>
+                        <div class="experience-meta">
+                            <div class="experience-period">Apr 2024 – May 2025</div>
+                            <div class="experience-location">Bangalore, India</div>
+                        </div>
+                    </div>
+                    <div class="experience-description">
+                        Fintech startup delivering AI-native document intelligence for institutional fund managers.
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-metrics">
+                            <span class="metric-badge">★ 90%+ Extraction Accuracy</span>
+                            <span class="metric-badge">★ 83% Table-Footnote Precision Gain</span>
+                            <span class="metric-badge">★ Enterprise-Scale Async Inference</span>
+                        </div>
+                        <div class="project-details">
+                            <div class="detail-item">Developed PyTorch CV+NLP pipelines to extract structured data from financial charts, paragraphs, and multi-format documents — achieving 90%+ extraction accuracy.</div>
+                            <div class="detail-item">Improved table-footnote association precision by 83% using DETR-based document layout modelling.</div>
+                            <div class="detail-item">Built an LLM-powered natural language analytics platform, converting user queries to validated structured analytical workflows.</div>
+                            <div class="detail-item">Designed async batching and latency optimisation for enterprise-scale inference; implemented robust validation and monitoring loops in production.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Data Scientist</div>
+                            <div class="experience-location">Aidetic Software Pvt. Ltd.</div>
+                        </div>
+                        <div class="experience-meta">
+                            <div class="experience-period">Feb 2023 – Mar 2024</div>
+                            <div class="experience-location">Bangalore, India</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-metrics">
+                            <span class="metric-badge">★ 85% Extraction Accuracy Gain</span>
+                            <span class="metric-badge">★ 150+ Docs/Day via FastAPI</span>
+                        </div>
+                        <div class="project-details">
+                            <div class="detail-item">Boosted enterprise document-extraction accuracy by 85% through dataset curation, model retraining, and evaluation-driven optimisation.</div>
+                            <div class="detail-item">Engineered a YOLO-based object detection pipeline for multi-format document parsing; real-time FastAPI inference serving 150+ documents/day across enterprise business units.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 4 -->
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Research Scientist</div>
+                            <div class="experience-location">IIT Kharagpur — Centre of Excellence for AI</div>
+                        </div>
+                        <div class="experience-meta">
+                            <div class="experience-period">Aug 2021 – Jan 2023</div>
+                            <div class="experience-location">Kharagpur, India</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-details">
+                            <div class="detail-item">Achieved 85% Dice/F1 score in satellite-imagery segmentation using deep-learning pipelines with targeted augmentation.</div>
+                            <div class="detail-item">Mentored 3 junior researchers on experimentation design, model validation, and reproducibility standards.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Let's Connect</h2>
+                <p>Open to collaborations, discussions, and opportunities in AI/ML</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:reddish.rb@gmail.com" class="contact-link">📧 Email</a>
+                <a href="https://www.linkedin.com/in/raktimabarman96/" target="_blank" class="contact-link">💼 LinkedIn</a>
+                <a href="https://github.com/RB-96" target="_blank" class="contact-link">🐙 GitHub</a>
+                <a href="#" class="contact-link">📍 Bangalore</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Raktima Barman. Crafted with ❤️ and AI</p>
+    </footer>
+</body>
+</html>
