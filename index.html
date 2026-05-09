@@ -31,6 +31,53 @@
             color: var(--text-dark);
             background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
             overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: gradientShift 15s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%232563eb' stroke-width='0.5' opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Cpath d='M15 15 L45 45 M45 15 L15 45'/%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { 
+                opacity: 0.5;
+            }
+            50% { 
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-30px) translateX(0px); }
+            75% { transform: translateY(-20px) translateX(-10px); }
         }
 
         /* Animations */
@@ -97,6 +144,8 @@
         .page {
             display: none;
             animation: fadeIn 0.6s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         .page.active {
@@ -110,7 +159,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 101;
             animation: slideInDown 0.6s ease-out;
         }
 
@@ -182,6 +231,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         /* Breadcrumb */
@@ -222,9 +273,23 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='2' fill='white' opacity='0.15'/%3E%3Ccircle cx='70' cy='30' r='2' fill='white' opacity='0.15'/%3E%3Ccircle cx='50' cy='70' r='2' fill='white' opacity='0.15'/%3E%3Cline x1='30' y1='30' x2='70' y2='30' stroke='white' stroke-width='0.5' opacity='0.1'/%3E%3Cline x1='30' y1='30' x2='50' y2='70' stroke='white' stroke-width='0.5' opacity='0.1'/%3E%3Cline x1='70' y1='30' x2='50' y2='70' stroke='white' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
             pointer-events: none;
             animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .hero .container {
@@ -339,6 +404,38 @@
         .about {
             padding: 5rem 2rem;
             background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: 
+                radial-gradient(circle at center, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .about::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: 
+                radial-gradient(circle at center, rgba(124, 58, 237, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .about .container {
+            position: relative;
+            z-index: 1;
         }
 
         /* Full width about */
@@ -853,6 +950,28 @@
         .projects-showcase {
             padding: 5rem 2rem;
             background: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projects-showcase::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(124, 58, 237, 0.05) 0%, transparent 50%);
+            animation: gradientShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .projects-showcase .container {
+            position: relative;
+            z-index: 1;
         }
 
         .projects-filter {
@@ -956,44 +1075,264 @@
         /* Contact Section */
         .contact {
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #312e81 100%);
             color: var(--white);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 20%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+            animation: gradientShift 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .contact::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%233b82f6' stroke-width='0.3' opacity='0.05'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3Cpath d='M20 40 L60 40 M40 20 L40 60'/%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .contact .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
             flex-wrap: wrap;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 1.5rem;
+            padding: 2.5rem;
+            width: 260px;
+            height: 240px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+            border: 2px solid;
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            animation: slideInUp 0.6s ease-out backwards;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        .contact-item:nth-child(1) { 
+            animation-delay: 0s;
+            border-image: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%) 1;
+        }
+        .contact-item:nth-child(2) { 
+            animation-delay: 0.1s;
+            border-image: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%) 1;
+        }
+        .contact-item:nth-child(3) { 
+            animation-delay: 0.2s;
+            border-image: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%) 1;
+        }
+        .contact-item:nth-child(4) { 
+            animation-delay: 0.3s;
+            border-image: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) 1;
+        }
+
+        .contact-item:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3), 0 0 20px rgba(236, 72, 153, 0.2);
+        }
+
+        .contact-item:hover::before {
+            top: -25%;
+            right: -25%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(236, 72, 153, 0.2));
+            border-radius: 14px;
+            position: relative;
+            z-index: 1;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .contact-item:nth-child(1) .contact-icon {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.25), rgba(59, 130, 246, 0.15));
+            animation-delay: 0s;
+        }
+
+        .contact-item:nth-child(2) .contact-icon {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.25), rgba(139, 92, 246, 0.15));
+            animation-delay: 0.3s;
+        }
+
+        .contact-item:nth-child(3) .contact-icon {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.25), rgba(59, 130, 246, 0.15));
+            animation-delay: 0.6s;
+        }
+
+        .contact-item:nth-child(4) .contact-icon {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(236, 72, 153, 0.15));
+            animation-delay: 0.9s;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.65);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #60a5fa 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-item[href] {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-item[href]:hover {
+            cursor: pointer;
         }
 
         .contact-link {
             text-decoration: none;
             color: var(--white);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 0.5rem;
-            backdrop-filter: blur(10px);
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border: 2px solid;
+            border-radius: 12px;
+            backdrop-filter: blur(15px);
             animation: slideInUp 0.6s ease-out backwards;
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-link:nth-child(1) { animation-delay: 0s; }
-        .contact-link:nth-child(2) { animation-delay: 0.1s; }
-        .contact-link:nth-child(3) { animation-delay: 0.2s; }
-        .contact-link:nth-child(4) { animation-delay: 0.3s; }
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+            pointer-events: none;
+        }
+
+        .contact-link:nth-child(3) { 
+            animation-delay: 0.2s;
+            border-color: #60a5fa;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
+        }
+
+        .contact-link:nth-child(4) { 
+            animation-delay: 0.3s;
+            border-color: #8b5cf6;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%);
+        }
 
         .contact-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(96, 165, 250, 0.3);
+            border-color: currentColor;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.25) 0%, rgba(139, 92, 246, 0.2) 100%);
+        }
+
+        .contact-link:nth-child(4):hover {
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3);
+        }
+
+        .contact-link:hover::before {
+            left: 100%;
         }
 
         /* Footer */
@@ -1237,10 +1576,34 @@
                     <p>Open to collaborations, discussions, and opportunities in AI/ML</p>
                 </div>
                 <div class="contact-links">
-                    <a href="mailto:reddish.rb@gmail.com" class="contact-link">📧 Email</a>
-                    <a href="tel:+918981770314" class="contact-link">📱 Phone</a>
-                    <a href="https://www.linkedin.com/in/raktimabarman96/" target="_blank" class="contact-link">💼 LinkedIn</a>
-                    <a href="https://github.com/RB-96" target="_blank" class="contact-link">🐙 GitHub</a>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-content">
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value">reddish.rb@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-content">
+                            <div class="contact-label">Phone</div>
+                            <div class="contact-value">+91-8981770314</div>
+                        </div>
+                    </div>
+                    <a href="https://www.linkedin.com/in/raktimabarman96/" target="_blank" class="contact-item" style="text-decoration: none;">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-content">
+                            <div class="contact-label">LinkedIn</div>
+                            <div class="contact-value">Profile</div>
+                        </div>
+                    </a>
+                    <a href="https://github.com/RB-96" target="_blank" class="contact-item" style="text-decoration: none;">
+                        <div class="contact-icon">🐙</div>
+                        <div class="contact-content">
+                            <div class="contact-label">GitHub</div>
+                            <div class="contact-value">RB-96</div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
